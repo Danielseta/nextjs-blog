@@ -4,7 +4,6 @@ import Navbar from "./componets/Navbar";
 export default function Home() {
   return (
     <div>
-      <Navbar />
       <h1>hello there</h1>
     </div>
   );
