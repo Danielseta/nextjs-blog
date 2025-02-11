@@ -1,7 +1,9 @@
 import { client, urlFor } from "./lib/sanity";
 import { simpleBlogCard } from "./lib/interface";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent  } from "@/components/ui/card";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 async function getData() {
   const query = `
@@ -33,10 +35,13 @@ export default async function Home() {
             className=" rounded-t-lg h-[200px] object-cover"
           />
           <CardContent className="mt-5">
-            <h3 className="text-lg line-clamp-2">{post.title}</h3>
+            <h3 className="text-lg line-clamp-2 font-bold">{post.title}</h3>
             <p className=" line-clamp-3 text-sm mt-2 text-gray-600 dark:text-gray-400">
               {post.smallDescription}
             </p>
+            <Button asChild className="w-full mt-7">
+              <Link href={`/blog/${post.currentSlug}`}>Read More</Link>
+            </Button>
           </CardContent>
         </Card>
       ))}
