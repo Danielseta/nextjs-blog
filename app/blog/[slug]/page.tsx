@@ -1,5 +1,6 @@
 import { client, urlFor } from "../../lib/sanity";
 import { fulLBlog } from "@/app/lib/interface";
+import { PortableText } from "next-sanity";
 
 import Image from "next/image";
 
@@ -33,7 +34,13 @@ export default async function BlogArticle({
           {data.title}
         </span>
       </h1>
-      <Image src={urlFor(data.titleImage).url()} width={800} height={800} alt="Title Image"/>
+      <Image src={urlFor(data.titleImage).url()} width={800} height={800} alt="Title Image"
+      priority
+      className=" rounded-lg mt-8 border"  
+      />
+      <div className="mt-16 prose prose-blue prose-xl dark:prose-invert">
+        <PortableText value={data.content} />
+      </div>
     </div>
   );
 }
