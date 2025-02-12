@@ -1,5 +1,7 @@
+import { client, urlFor } from "../../lib/sanity";
 import { fulLBlog } from "@/app/lib/interface";
-import { client } from "../../lib/sanity";
+
+import Image from "next/image";
 
 async function getData(slug: string) {
   const query = `
@@ -22,7 +24,7 @@ export default async function BlogArticle({
   const data: fulLBlog = await getData(params.slug);
 
   return (
-    <div>
+    <div className="mt-8">
       <h1>
         <span className=" block text-base text-center text-primary font-semibold tracking-wide uppercase">
           Daniel - Blog
@@ -31,6 +33,7 @@ export default async function BlogArticle({
           {data.title}
         </span>
       </h1>
+      <Image src={urlFor(data.titleImage).url()} width={800} height={800} alt="Title Image"/>
     </div>
   );
 }
